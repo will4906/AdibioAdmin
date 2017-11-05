@@ -18,4 +18,19 @@ public class OrderInfoProduct {
     private String product_name;
     private BigDecimal unit_price;
     private String patient_infoid;
+
+//    pi.name, pi.gender, pi.age, pi.phone, pi.country, pi.province, pi.city, pi.district, pi.address, pi.has_diabetic, pi.height, pi.weight
+    private String name;
+    private String gender;
+    private float age;
+    private String country;
+    private String province;
+    private String city;
+    private String district;
+    private String address;
+    private String phone;
+    private int has_diabetic;
+    private float height;
+    private float weight;
+
 }

@@ -17,4 +17,16 @@ public class LoginController {
     public Object successLogin(){
         return new Result(Result.OK, "Login Successfully!");
     }
+
+    @RequestMapping(value = "/failurelogin", method = RequestMethod.GET)
+    @ResponseBody
+    public Object failureLogin(){
+        return new Result(Result.ERR, "账号或密码错误");
+    }
+
+    @RequestMapping(value = "/successlogout", method = RequestMethod.GET)
+    @ResponseBody
+    public Object successLogout(){
+        return new Result(Result.OK, "Logout Successfully!");
+    }
 }

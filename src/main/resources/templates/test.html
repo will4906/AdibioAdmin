@@ -7,6 +7,7 @@
 <body>
 <button type="button" id="login">登录</button>
 <button type="button" id="func">处理</button>
+<button type="button" id="logout">登出</button>
 <section id="data">
 
 </section>
@@ -33,6 +34,15 @@
     }
     $('#login').click(function () {
         requuestLogin();
+    });
+    $('#logout').click(function () {
+        $.ajax({
+            url: '/dologout',
+            type:'GET',
+            success: function (resp) {
+                console.log(resp);
+            }
+        })
     });
 </script>
 </body>

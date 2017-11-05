@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
-                .formLogin().defaultSuccessUrl("/successlogin").failureForwardUrl("/failure_login").loginProcessingUrl("/dologin").permitAll();
+                .formLogin().defaultSuccessUrl("/successlogin").failureForwardUrl("/failurelogin").loginProcessingUrl("/dologin").permitAll()
+                .and()
+                .logout().logoutUrl("/dologout").logoutSuccessUrl("/successlogout").permitAll();
     }
 }

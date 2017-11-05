@@ -24,11 +24,15 @@ public class ManagerService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Manager manager = managerDao.queryManagerByUsername(username);
+        Manager manager = managerDao.selectManagerByUsername(username);
         if (manager == null){
             throw new UsernameNotFoundException("Please check the account!");
         }
         logger.info(manager);
         return new User( manager.getUsername(), manager.getPassword(), new ArrayList<>());
+    }
+
+    public Manager selectManagerByUsername(String username){
+        return managerDao.selectManagerByUsername(username);
     }
 }

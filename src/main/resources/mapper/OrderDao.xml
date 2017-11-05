@@ -45,15 +45,21 @@
     </select>
 
     <select id="selectOrderInfo" resultType="OrderInfoProduct">
-        SELECT order_items.order_id, order_items.order_itemid, order_infos.order_infoid, order_infos.product_id, order_infos.patient_infoid, products.product_name, products.unit_price
-        FROM order_infos, order_items, products
+        SELECT
+            ot.order_id, ot.order_itemid,
+            oi.order_infoid, oi.product_id, oi.patient_infoid,
+            products.product_name, products.unit_price,
+            pi.name, pi.gender, pi.age, pi.phone, pi.country, pi.province, pi.city, pi.district, pi.address, pi.has_diabetic, pi.height, pi.weight
+        FROM order_infos AS oi, order_items AS ot, products, patient_infos AS pi
         WHERE
-            order_items.order_id = #{order_id}
+            ot.order_id = #{order_id}
         AND
-            order_items.order_itemid = order_infos.order_itemid
+            ot.order_itemid = oi.order_itemid
         AND
-            order_infos.product_id = order_items.product_id
+            oi.product_id = ot.product_id
         AND
-            products.product_id = order_infos.product_id
+            products.product_id = oi.product_id
+        AND
+            pi.patient_infoid = oi.patient_infoid
     </select>
 </mapper>

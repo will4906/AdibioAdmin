@@ -9,5 +9,5 @@ import java.util.Map;
 @Repository
 public interface ManagerDao {
 
-    Manager queryManagerByUsername(@Param("username")String username);
+    Manager selectManagerByUsername(@Param("username")String username);
 }

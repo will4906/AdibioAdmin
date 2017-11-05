@@ -100,42 +100,67 @@ The orders api of adibioshop.
                 result: "ok",
                 errMsg: "",
                 parm: {
-                    events: [
-                        {
-                            order_eventid: "77616d1b-4cfc-4523-9fa5-d9bcfc077669",
-                            order_id: "355894887377272832",
-                            event_time: 1504893553000,
-                            event_title: "CREATION",
-                            event_executor: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
-                            description: null
-                        },
-                        {
-                            order_eventid: "d4fecb30-31b6-4bff-b227-1c257bbb5eb6",
-                            order_id: "355894887377272832",
-                            event_time: 1504893570000,
-                            event_title: "PAID",
-                            event_executor: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
-                            description: null
-                        }
-                    ],
-                    infos: [
-                        {
-                            order_id: "355894887377272832",
-                            order_itemid: "50bb1174-97ec-4dbe-ba0d-ce500621867e",
-                            order_infoid: "b81f7d96-c216-4f56-89aa-ad7d41de6595",
-                            product_id: "83f7c071-7858-4e3f-b000-3c011db15e41",
-                            product_name: "肾病早期筛查",
-                            unit_price: 0.03,
-                            patient_infoid: "50bf6a9e-2165-40a2-a1a7-ccb9b68ebe18"
-                        }
-                    ],
-                    order: {
-                        row_id: 0,
-                        order_id: "355894887377272832",
-                        customer_id: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
-                        price: 0.02,
-                        status: "PAID",
+                events: [
+                    {
+                        order_eventid: "b5fcfc92-e5c3-45aa-94de-2656f83e1160",
+                        order_id: "359430955951194112",
+                        event_time: 1505736618000,
+                        event_title: "CREATION",
+                        event_executor: "de14cd03-2f57-4efd-a14b-8e2cebb7a890",
                         description: null
+                    }
+                ],
+                infos: [
+                    {
+                        order_id: "359430955951194112",
+                        order_itemid: "91882164-fcb8-4ef0-bf8a-e345c3a1e681",
+                        order_infoid: "013dfc99-5691-40bd-a3b8-8fbb77ac1cbe",
+                        product_id: "83f7c071-7858-4e3f-b000-3c011db15e41",
+                        product_name: "肾病早期筛查",
+                        unit_price: 0.03,
+                        patient_infoid: "a80e56ea-7a21-4a2e-ac56-836416d0e77b",
+                        name: "周",
+                        gender: "M",
+                        age: 20,
+                        country: "CHINA",
+                        province: "北京",
+                        city: "北京市",
+                        district: "东城区",
+                        address: "哈哈",
+                        phone: "15602980405",
+                        has_diabetic: 0,
+                        height: 0,
+                        weight: 0
+                    },
+                    {
+                        order_id: "359430955951194112",
+                        order_itemid: "7a0c32b9-568a-4a48-8520-78ebbd85ceea",
+                        order_infoid: "0201c6ef-fb4f-4f47-9c35-762310ba92bd",
+                        product_id: "bda342a2-27c0-4cb1-bed3-11a786391365",
+                        product_name: "糖尿病早期筛查",
+                        unit_price: 0.03,
+                        patient_infoid: "a80e56ea-7a21-4a2e-ac56-836416d0e77b",
+                        name: "周",
+                        gender: "M",
+                        age: 20,
+                        country: "CHINA",
+                        province: "北京",
+                        city: "北京市",
+                        district: "东城区",
+                        address: "哈哈",
+                        phone: "15602980405",
+                        has_diabetic: 0,
+                        height: 0,
+                        weight: 0
+                    }
+                ],
+                order: {
+                    row_id: 0,
+                    order_id: "359430955951194112",
+                    customer_id: "de14cd03-2f57-4efd-a14b-8e2cebb7a890",
+                    price: 0.06,
+                    status: "CANCELED",
+                    description: null
                     }
                 }
             }
