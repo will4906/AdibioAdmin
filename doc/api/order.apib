@@ -1,0 +1,141 @@
+FORMAT: 1A
+
+# Orders Api
+
+The orders api of adibioshop.
+
+# 查询最顶端订单 [/latest_orders]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            limit = 20(需要一次请求的数量)
+            status = 'ALL'(全部), 'UNPAID'(未支付), 'PROCESSING'(处理中), 'FINISHED'(已完成), 'CANCELED'(已取消)
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                    {
+                        row_id: 204,
+                        order_id: "374959293436264448",
+                        customer_id: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
+                        price: 0.02,
+                        status: "PAID",
+                        description: null
+                    },
+                    {
+                        row_id: 185,
+                        order_id: "360093731321282560",
+                        customer_id: "de14cd03-2f57-4efd-a14b-8e2cebb7a890",
+                        price: 0.06,
+                        status: "CANCELED",
+                        description: null
+                    }
+                ]
+            }
+
+# 查询中间订单 [/part_orders]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            limit = 20(需要一次请求的数量)
+            status = 'ALL'(全部), 'UNPAID'(未支付), 'PROCESSING'(处理中), 'FINISHED'(已完成), 'CANCELED'(已取消)
+            start_row = 185
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                    {
+                        row_id: 204,
+                        order_id: "374959293436264448",
+                        customer_id: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
+                        price: 0.02,
+                        status: "PAID",
+                        description: null
+                    },
+                    {
+                        row_id: 185,
+                        order_id: "360093731321282560",
+                        customer_id: "de14cd03-2f57-4efd-a14b-8e2cebb7a890",
+                        price: 0.06,
+                        status: "CANCELED",
+                        description: null
+                    }
+                ]
+            }
+
+
+# 查询订单细节 [/order_detail]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            order_id = 355894887377272832
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                    events: [
+                        {
+                            order_eventid: "77616d1b-4cfc-4523-9fa5-d9bcfc077669",
+                            order_id: "355894887377272832",
+                            event_time: 1504893553000,
+                            event_title: "CREATION",
+                            event_executor: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
+                            description: null
+                        },
+                        {
+                            order_eventid: "d4fecb30-31b6-4bff-b227-1c257bbb5eb6",
+                            order_id: "355894887377272832",
+                            event_time: 1504893570000,
+                            event_title: "PAID",
+                            event_executor: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
+                            description: null
+                        }
+                    ],
+                    infos: [
+                        {
+                            order_id: "355894887377272832",
+                            order_itemid: "50bb1174-97ec-4dbe-ba0d-ce500621867e",
+                            order_infoid: "b81f7d96-c216-4f56-89aa-ad7d41de6595",
+                            product_id: "83f7c071-7858-4e3f-b000-3c011db15e41",
+                            product_name: "肾病早期筛查",
+                            unit_price: 0.03,
+                            patient_infoid: "50bf6a9e-2165-40a2-a1a7-ccb9b68ebe18"
+                        }
+                    ],
+                    order: {
+                        row_id: 0,
+                        order_id: "355894887377272832",
+                        customer_id: "60df649c-51c8-4d1d-b02c-47d44d4b7355",
+                        price: 0.02,
+                        status: "PAID",
+                        description: null
+                    }
+                }
+            }

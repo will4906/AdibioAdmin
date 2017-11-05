@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.OrderDao">
+
+    <select id="selectLatestOrders" resultType="Order">
+        SELECT
+            orders.row_id, orders.order_id, orders.customer_id, orders.price, orders.status, orders.description, order_events.event_time AS create_time
+        FROM
+            orders, order_events
+        WHERE
+            order_events.order_id = orders.order_id
+            AND
+            order_events.event_title = #{status}
+        ORDER BY
+            order_events.event_time
+        DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="selectPartOrders" resultType="Order">
+        SELECT
+            orders.row_id, orders.order_id, orders.customer_id, orders.price, orders.status, orders.description, order_events.event_time AS create_time
+        FROM
+            orders, order_events
+        WHERE
+            order_events.order_id = orders.order_id
+            AND
+            order_events.event_title = #{status}
+            AND
+            orders.row_id <![CDATA[ < ]]> #{start_row}
+        ORDER BY
+            order_events.event_time
+        DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="selectOrder" resultType="Order">
+        SELECT order_id, customer_id, price, status, description FROM orders WHERE order_id = #{order_id}
+    </select>
+
+    <select id="selectOrderEvent" resultType="OrderEvent">
+        SELECT order_eventid, order_id, event_time, event_title, event_executor FROM order_events WHERE order_id = #{order_id}
+    </select>
+
+    <select id="selectOrderInfo" resultType="OrderInfoProduct">
+        SELECT order_items.order_id, order_items.order_itemid, order_infos.order_infoid, order_infos.product_id, order_infos.patient_infoid, products.product_name, products.unit_price
+        FROM order_infos, order_items, products
+        WHERE
+            order_items.order_id = #{order_id}
+        AND
+            order_items.order_itemid = order_infos.order_itemid
+        AND
+            order_infos.product_id = order_items.product_id
+        AND
+            products.product_id = order_infos.product_id
+    </select>
+</mapper>

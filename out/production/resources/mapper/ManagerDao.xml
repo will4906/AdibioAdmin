@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.ManagerDao">
+
+    <resultMap id="manager" type="com.willshuhua.adibioadmin.entity.Manager">
+        <result property="manager_id" column="manager_id"/>
+        <result property="manager_level" column="manager_level"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="register_time" column="register_time"/>
+        <result property="real_name" column="real_name"/>
+        <result property="id_number" column="id_number"/>
+        <result property="telphone" column="telphone"/>
+        <result property="email" column="email"/>
+        <result property="head_image" column="head_image"/>
+    </resultMap>
+    <select id="queryManagerByUsername" resultMap="manager">
+        SELECT
+            manager_id, manager_level, username, password, register_time, real_name, id_number, telphone, email, head_image
+        FROM
+            managers
+        WHERE
+            username = #{username}
+    </select>
+</mapper>

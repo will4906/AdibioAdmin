@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" id="login">登录</button>
+<button type="button" id="func">处理</button>
+<section id="data">
+
+</section>
+<script th:src="@{/resource/jquery/js/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+    function requuestLogin() {
+        $.ajax({
+            url: '/dologin',
+            type: 'POST',
+            data: {
+                username: 'admin',
+                password: 'admin'
+            },
+            complete: function (resp) {
+                console.log("完成了");
+            },
+            success: function (resp) {
+                console.log(resp);
+            },
+            error: function (resp) {
+                console.log(resp);
+            }
+        })
+    }
+    $('#login').click(function () {
+        requuestLogin();
+    });
+</script>
+</body>
+</html>
