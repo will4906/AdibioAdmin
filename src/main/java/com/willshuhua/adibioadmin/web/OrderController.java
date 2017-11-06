@@ -4,6 +4,7 @@ import com.willshuhua.adibioadmin.dto.common.Result;
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
 import com.willshuhua.adibioadmin.entity.order.Order;
 import com.willshuhua.adibioadmin.service.OrderService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +21,16 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    private Logger logger = Logger.getLogger(OrderController.class);
+
     @RequestMapping(value = "/latest_orders", method = RequestMethod.GET)
     public Object latestOrders(HttpServletRequest request){
         int limit = Integer.valueOf(request.getParameter("limit"));
         String status = request.getParameter("status");
+
+        if ("ALL".equals(status)){
+            status = "%";
+        }
 
         OrderQuery orderQuery = new OrderQuery();
         orderQuery.setLimit(limit);
@@ -38,6 +45,10 @@ public class OrderController {
         int limit = Integer.valueOf(request.getParameter("limit"));
         String status = request.getParameter("status");
         long startRow = Long.valueOf(request.getParameter("start_row"));
+        if ("ALL".equals(status)){
+            status = "%";
+        }
+
         OrderQuery orderQuery = new OrderQuery();
         orderQuery.setStatus(status);
         orderQuery.setLimit(limit);

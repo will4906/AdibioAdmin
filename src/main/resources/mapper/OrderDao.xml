@@ -12,7 +12,7 @@
         WHERE
             order_events.order_id = orders.order_id
                 AND
-                orders.status = #{status}
+                orders.status LIKE #{status}
                 AND
                 order_events.event_title = 'CREATION'
         ORDER BY
@@ -29,7 +29,7 @@
         WHERE
             order_events.order_id = orders.order_id
             AND
-            orders.status = #{status}
+            orders.status LIKE #{status}
             AND
             order_events.event_title = 'CREATION'
             AND
