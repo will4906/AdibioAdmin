@@ -1,7 +1,9 @@
 package com.willshuhua.adibioadmin.service.impl;
 
+import com.willshuhua.adibioadmin.dao.CustomerDao;
 import com.willshuhua.adibioadmin.dao.OrderDao;
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
+import com.willshuhua.adibioadmin.entity.customer.CustomerWechat;
 import com.willshuhua.adibioadmin.entity.order.Order;
 import com.willshuhua.adibioadmin.entity.order.OrderEvent;
 import com.willshuhua.adibioadmin.entity.order.OrderInfo;
@@ -19,6 +21,8 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderDao orderDao;
+    @Autowired
+    CustomerDao customerDao;
 
     @Override
     public List<Order> selectLatestOrders(OrderQuery orderQuery) {
@@ -33,10 +37,12 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Map<String, Object> getOrderDetail(String orderId) {
         Order order = orderDao.selectOrder(orderId);
+        CustomerWechat customerWechat = customerDao.selectCustomerWechat(order.getCustomer_id());
         List<OrderEvent> eventList = orderDao.selectOrderEvent(orderId);
         List<OrderInfoProduct> infoList = orderDao.selectOrderInfo(orderId);
         Map<String, Object> orderDetail = new HashMap<>();
         orderDetail.put("order", order);
+        orderDetail.put("wechat", customerWechat);
         orderDetail.put("events", eventList);
         orderDetail.put("infos", infoList);
         return orderDetail;

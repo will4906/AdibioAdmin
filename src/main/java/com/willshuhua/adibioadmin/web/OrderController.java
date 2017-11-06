@@ -7,6 +7,7 @@ import com.willshuhua.adibioadmin.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,4 +52,11 @@ public class OrderController {
         Map<String, Object> orderDetail = orderService.getOrderDetail(orderId);
         return new Result(Result.OK, orderDetail);
     }
+
+//    TODO:根据order_infoid查询到订单的相关信息
+//    @RequestMapping(value = "/info_to_orderid", method = RequestMethod.GET)
+//    public Object infoToOrderid(@RequestParam("infoid")String infoId){
+//
+//    }
+
 }

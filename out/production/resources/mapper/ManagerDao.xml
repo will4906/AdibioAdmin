@@ -16,7 +16,7 @@
         <result property="email" column="email"/>
         <result property="head_image" column="head_image"/>
     </resultMap>
-    <select id="queryManagerByUsername" resultMap="manager">
+    <select id="selectManagerByUsername" resultMap="manager">
         SELECT
             manager_id, manager_level, username, password, register_time, real_name, id_number, telphone, email, head_image
         FROM
