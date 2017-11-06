@@ -47,4 +47,9 @@ public class OrderServiceImpl implements OrderService{
         orderDetail.put("infos", infoList);
         return orderDetail;
     }
+
+    @Override
+    public Map<String, String> selectOrderIdByOrderInfoid(String orderInfoId) {
+        return orderDao.selectOrderIdByOrderInfoid(orderInfoId);
+    }
 }

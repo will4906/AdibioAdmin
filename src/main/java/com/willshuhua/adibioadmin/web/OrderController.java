@@ -54,9 +54,9 @@ public class OrderController {
     }
 
 //    TODO:根据order_infoid查询到订单的相关信息
-//    @RequestMapping(value = "/info_to_orderid", method = RequestMethod.GET)
-//    public Object infoToOrderid(@RequestParam("infoid")String infoId){
-//
-//    }
+    @RequestMapping(value = "/infoid_to_orderid", method = RequestMethod.GET)
+    public Object infoToOrderid(@RequestParam("infoid")String infoId){
+        return new Result(Result.OK, orderService.selectOrderIdByOrderInfoid(infoId));
+    }
 
 }

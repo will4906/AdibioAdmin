@@ -11,8 +11,10 @@
             orders, order_events
         WHERE
             order_events.order_id = orders.order_id
-            AND
-            order_events.event_title = #{status}
+                AND
+                orders.status = #{status}
+                AND
+                order_events.event_title = 'CREATION'
         ORDER BY
             orders.row_id
         DESC
@@ -27,7 +29,9 @@
         WHERE
             order_events.order_id = orders.order_id
             AND
-            order_events.event_title = #{status}
+            orders.status = #{status}
+            AND
+            order_events.event_title = 'CREATION'
             AND
             orders.row_id <![CDATA[ < ]]> #{start_row}
         ORDER BY
@@ -47,9 +51,9 @@
     <select id="selectOrderInfo" resultType="OrderInfoProduct">
         SELECT
             ot.order_id, ot.order_itemid,
-            oi.order_infoid, oi.product_id, oi.patient_infoid,
+            oi.order_infoid, oi.product_id,
             products.product_name, products.unit_price,
-            pi.name, pi.gender, pi.age, pi.phone, pi.country, pi.province, pi.city, pi.district, pi.address, pi.has_diabetic, pi.height, pi.weight
+            pi.order_patient_infoid, pi.name, pi.gender, pi.age, pi.phone, pi.country, pi.province, pi.city, pi.district, pi.address, pi.has_diabetic, pi.height, pi.weight
         FROM order_infos AS oi, order_items AS ot, products, order_patient_infos AS pi
         WHERE
             ot.order_id = #{order_id}
@@ -61,5 +65,13 @@
             products.product_id = oi.product_id
         AND
             pi.order_infoid = oi.order_infoid
+    </select>
+
+    <select id="selectOrderIdByOrderInfoid" resultType="java.util.Map">
+        SELECT order_items.order_id FROM order_items, order_infos
+        WHERE
+            order_infos.order_infoid = #{order_infoid}
+        AND
+                order_items.order_itemid = order_infos.order_itemid
     </select>
 </mapper>

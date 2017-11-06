@@ -160,3 +160,25 @@ The orders api of adibioshop.
                     }
                 }
             }
+
+# 根据order_infoid查询order_id [/infoid_to_orderid]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            infoid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                    order_id: "374959293436264448"
+                }
+            }

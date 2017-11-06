@@ -17,4 +17,6 @@ public interface OrderService {
     List<Order> selectPartOrders(OrderQuery orderQuery);
 
     Map<String, Object> getOrderDetail(String orderId);
+
+    Map<String, String> selectOrderIdByOrderInfoid(String orderInfoId);
 }

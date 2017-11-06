@@ -1,0 +1,30 @@
+FORMAT: 1A
+
+# Manager Api
+
+The manager api of adibioshop.
+
+# 查询管理者信息 [/manager_info]
+
+## GET
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                    manager_id: "admin",
+                    manager_level: 0,
+                    username: "admin",
+                    password: null,                 //虽然有这个变量但是不会又任何内容
+                    register_time: 1509724257000,
+                    real_name: "张三",
+                    id_number: null,
+                    telphone: null,
+                    email: null,
+                    head_image: null
+                }
+            }
