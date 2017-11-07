@@ -1,0 +1,122 @@
+FORMAT: 1A
+
+# Product Api
+
+The product api of adibioshop.
+
+# 查询全部产品分组 [/product_groups]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                    {
+                    product_groupid: "1",
+                    name: "default",
+                    description: null
+                    }
+                ]
+            }
+
+# 修改某个产品分组 [/update_product_group]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                    {
+                    product_groupid: "1",
+                    name: "default",
+                    description: null
+                    }
+                ]
+            }
+
+# 增加产品分组 [/add_product_group]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
+            {
+                name: 'hello',
+                description: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: ""
+            }
+
+# 修改产品分组 [/update_product_group]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
+            {
+                product_groupid: '123445667'
+                name: 'hello',
+                description: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: ""
+            }
+
+# 删除产品分组 [/delete_product_group]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
+            {
+                product_groupid: '123445667'
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: ""
+            }

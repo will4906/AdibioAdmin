@@ -90,6 +90,23 @@
         LIMIT #{limit}
     </select>
 
+    <select id="selectPartShares" resultType="Share">
+        SELECT
+        shares.row_id, shares.share_id, shares.order_id, shares.from_id, shares.is_paid
+        FROM
+        shares, orders
+        WHERE
+        orders.order_id = shares.order_id
+        AND
+        orders.status LIKE 'PAID'
+        AND
+        shares.row_id <![CDATA[ < ]]> #{start_row}
+        ORDER BY
+        shares.row_id
+        DESC
+        LIMIT #{limit}
+    </select>
+
     <select id="selectOrderCashback" resultType="OrderCashback">
         SELECT order_items.order_id, order_items.quantity, products.product_name, products.unit_price, pd.discount, pd.cashback
         FROM
@@ -105,4 +122,8 @@
         AND
             pd.discount_type = 'share'
     </select>
+
+    <update id="updateShareIsPaid">
+        UPDATE shares SET is_paid = #{is_paid} WHERE share_id = #{share_id}
+    </update>
 </mapper>

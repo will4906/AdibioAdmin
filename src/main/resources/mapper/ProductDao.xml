@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.ProductDao">
+
+    <select id="selectAllProductGroup" resultType="ProductGroup">
+        SELECT product_groupid, name FROM product_groups;
+    </select>
+
+    <update id="updateProductGroup">
+        UPDATE product_groups SET name = #{name}, description = #{description} WHERE product_groupid = #{product_groupid}
+    </update>
+
+    <insert id="addProductGroup">
+        INSERT INTO product_groups(product_groupid, name, description) VALUES (#{product_groupid}, #{name}, #{description})
+    </insert>
+
+    <delete id="deleteProductGroup">
+        DELETE FROM product_groups WHERE product_groupid = #{product_groupid}
+    </delete>
+</mapper>
