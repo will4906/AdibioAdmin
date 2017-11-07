@@ -21,4 +21,8 @@ public interface OrderService {
     Map<String, String> selectOrderIdByOrderInfoid(String orderInfoId);
 
     List<Object> selectLatestCashbackInfo(int limit);
+
+    List<Object> selectPartCashbackInfo(int limit, long start_row);
+
+    void updateShareIsPaid(String shareId, boolean isPaid);
 }

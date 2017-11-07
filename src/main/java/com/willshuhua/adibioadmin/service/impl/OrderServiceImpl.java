@@ -76,4 +76,28 @@ public class OrderServiceImpl implements OrderService{
         }
         return cashList;
     }
+
+    @Override
+    public List<Object> selectPartCashbackInfo(int limit, long start_row) {
+        List<Object> cashList = new ArrayList<>();
+        List<Share> shareList = orderDao.selectPartShares(limit, start_row);
+        List<List<OrderCashback>> listOrderCashbackList = new ArrayList<>();
+        for (Share share : shareList){
+            Map<String, Object> shareMap = new HashMap<>();
+            List<OrderCashback> orderCashbacks = orderDao.selectOrderCashback(share.getOrder_id());
+            listOrderCashbackList.add(orderCashbacks);
+            Customer customer = customerDao.selectCustomer(share.getFrom_id());
+            customer.setOpenid(null);
+            shareMap.put("share", share);
+            shareMap.put("cashbacks", listOrderCashbackList);
+            shareMap.put("customer", customer);
+            cashList.add(shareMap);
+        }
+        return cashList;
+    }
+
+    @Override
+    public void updateShareIsPaid(String shareId, boolean isPaid) {
+        orderDao.updateShareIsPaid(shareId, isPaid);
+    }
 }

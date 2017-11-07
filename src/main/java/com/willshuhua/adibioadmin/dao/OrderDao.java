@@ -30,5 +30,11 @@ public interface OrderDao {
 
     List<Share> selectLatestShares(@Param("limit") int limit);
 
+    List<Share> selectPartShares(@Param("limit") int limit, @Param("start_row") long startRow);
+
     List<OrderCashback> selectOrderCashback(@Param("order_id") String orderId);
+
+    void updateShareIsPaid(@Param("share_id") String shareId, @Param("is_paid") boolean isPaid);
+
+
 }

@@ -64,15 +64,26 @@ public class OrderController {
         return new Result(Result.OK, orderDetail);
     }
 
-//    TODO:根据order_infoid查询到订单的相关信息
     @RequestMapping(value = "/infoid_to_orderid", method = RequestMethod.GET)
     public Object infoToOrderid(@RequestParam("infoid")String infoId){
         return new Result(Result.OK, orderService.selectOrderIdByOrderInfoid(infoId));
     }
 
     @RequestMapping(value = "/latest_need_cashback", method = RequestMethod.GET)
-    public Object cashbackOrders(@RequestParam("limit") String limit){
+    public Object latestNeedCashback(@RequestParam("limit") String limit){
         List<Object> cashList = orderService.selectLatestCashbackInfo(Integer.valueOf(limit));
         return new Result(Result.OK, cashList);
+    }
+
+    @RequestMapping(value = "/part_need_cashback", method = RequestMethod.GET)
+    public Object partNeedCashback(@RequestParam("limit") String limit, @RequestParam("start_row")String start_row){
+        List<Object> cashList = orderService.selectPartCashbackInfo(Integer.valueOf(limit), Long.valueOf(start_row));
+        return new Result(Result.OK, cashList);
+    }
+
+    @RequestMapping(value = "/paid_cashback", method = RequestMethod.GET)
+    public Object paidCashback(@RequestParam("share_id")String shareId){
+        orderService.updateShareIsPaid(shareId, true);
+        return new Result(Result.OK);
     }
 }
