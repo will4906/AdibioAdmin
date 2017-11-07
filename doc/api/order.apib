@@ -234,4 +234,76 @@ The orders api of adibioshop.
                 ]
             }
 
+# 查询部分返现信息 [/part_need_cashback]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            limit
+            start_row
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                        {
+                            cashbacks: [
+                                [
+                                    {
+                                    order_id: "377498641708875776",
+                                    quantity: 1,
+                                    product_name: "糖尿病早期筛查",
+                                    unit_price: 0.03,
+                                    discount: 0.01,
+                                    cashback: 0.01
+                                    }
+                                ]
+                            ],
+                            share: {
+                                row_id: 1,
+                                share_id: "ab70d930-c42e-456b-9ef5-b6de53c794db",
+                                from_id: "f668fe1a-372e-4bf2-9415-3d0fca5a5688",
+                                order_id: "377498641708875776",
+                                _paid: false
+                            },
+                            customer: {
+                                customer_id: "f668fe1a-372e-4bf2-9415-3d0fca5a5688",
+                                telphone: null,
+                                email: null,
+                                openid: null,
+                                register_time: 1509449574000,
+                                zhifubao_account: "",
+                                bank_card_number: ""
+                        }
+                    }
+                ]
+            }
+
+# 将返现状态改为已返现 [/paid_cashback]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            share_id
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: null
+            }
+
 
