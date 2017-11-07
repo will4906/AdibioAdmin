@@ -7,4 +7,12 @@
     <select id="selectCustomerWechat" resultType="CustomerWechat">
         SELECT customer_id, openid, nickname, sex, province, city, headimgurl FROM customer_wechats WHERE customer_id = #{customer_id}
     </select>
+
+    <select id="selectCustomer" resultType="Customer">
+        SELECT customer_id, telphone,email, openid, register_time, zhifubao_account, bank_card_number
+        FROM
+            customers
+        WHERE
+            customer_id = #{customer_id}
+    </select>
 </mapper>

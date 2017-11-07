@@ -1,3 +1,4 @@
+-- 描述管理用户的表格
 DROP TABLE IF EXISTS managers CASCADE ;
 CREATE TABLE managers(
   row_id SERIAL,

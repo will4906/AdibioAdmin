@@ -5,6 +5,8 @@ import com.willshuhua.adibioadmin.entity.order.Order;
 import com.willshuhua.adibioadmin.entity.order.OrderEvent;
 import com.willshuhua.adibioadmin.entity.order.OrderInfo;
 import com.willshuhua.adibioadmin.entity.order.OrderInfoProduct;
+import com.willshuhua.adibioadmin.entity.share.OrderCashback;
+import com.willshuhua.adibioadmin.entity.share.Share;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +27,8 @@ public interface OrderDao {
     List<OrderInfoProduct> selectOrderInfo(@Param("order_id")String orderId);
 
     Map<String, String> selectOrderIdByOrderInfoid(@Param("order_infoid")String orderInfoid);
+
+    List<Share> selectLatestShares(@Param("limit") int limit);
+
+    List<OrderCashback> selectOrderCashback(@Param("order_id") String orderId);
 }

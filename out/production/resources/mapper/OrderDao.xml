@@ -12,7 +12,7 @@
         WHERE
             order_events.order_id = orders.order_id
                 AND
-                orders.status = #{status}
+                orders.status LIKE #{status}
                 AND
                 order_events.event_title = 'CREATION'
         ORDER BY
@@ -29,7 +29,7 @@
         WHERE
             order_events.order_id = orders.order_id
             AND
-            orders.status = #{status}
+            orders.status LIKE #{status}
             AND
             order_events.event_title = 'CREATION'
             AND
@@ -73,5 +73,36 @@
             order_infos.order_infoid = #{order_infoid}
         AND
                 order_items.order_itemid = order_infos.order_itemid
+    </select>
+
+    <select id="selectLatestShares" resultType="Share">
+        SELECT
+        shares.row_id, shares.share_id, shares.order_id, shares.from_id, shares.is_paid
+        FROM
+        shares, orders
+        WHERE
+        orders.order_id = shares.order_id
+        AND
+        orders.status LIKE 'PAID'
+        ORDER BY
+            shares.row_id
+        DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="selectOrderCashback" resultType="OrderCashback">
+        SELECT order_items.order_id, order_items.quantity, products.product_name, products.unit_price, pd.discount, pd.cashback
+        FROM
+            order_items, order_infos, products, product_discounts AS pd
+        WHERE
+            order_items.order_id = #{order_id}
+        AND
+            order_items.order_itemid = order_infos.order_itemid
+        AND
+            order_infos.product_id = products.product_id
+        AND
+            pd.product_id = products.product_id
+        AND
+            pd.discount_type = 'share'
     </select>
 </mapper>

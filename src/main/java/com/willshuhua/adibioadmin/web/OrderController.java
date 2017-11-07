@@ -70,4 +70,9 @@ public class OrderController {
         return new Result(Result.OK, orderService.selectOrderIdByOrderInfoid(infoId));
     }
 
+    @RequestMapping(value = "/latest_need_cashback", method = RequestMethod.GET)
+    public Object cashbackOrders(@RequestParam("limit") String limit){
+        List<Object> cashList = orderService.selectLatestCashbackInfo(Integer.valueOf(limit));
+        return new Result(Result.OK, cashList);
+    }
 }

@@ -19,4 +19,6 @@ public interface OrderService {
     Map<String, Object> getOrderDetail(String orderId);
 
     Map<String, String> selectOrderIdByOrderInfoid(String orderInfoId);
+
+    List<Object> selectLatestCashbackInfo(int limit);
 }
