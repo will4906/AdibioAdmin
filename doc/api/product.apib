@@ -120,3 +120,46 @@ The product api of adibioshop.
                 errMsg: "",
                 parm: ""
             }
+
+# 查询一个分组里的所有产品 [/product_list]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            product_groupid=1
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: [
+                    {
+                        product_id: "bda342a2-27c0-4cb1-bed3-11a786391365",
+                        product_groupid: "1",
+                        product_name: "糖尿病早期筛查",
+                        unit_price: 0.03,
+                        description: null
+                    },
+                    {
+                        product_id: "83f7c071-7858-4e3f-b000-3c011db15e41",
+                        product_groupid: "1",
+                        product_name: "肾病早期筛查",
+                        unit_price: 0.03,
+                        description: null
+                    },
+                    {
+                        product_id: "27e21552-3127-4b9d-8c79-6c791a22b3ec",
+                        product_groupid: "1",
+                        product_name: "中风早期筛查",
+                        unit_price: 0.03,
+                        description: null
+                    }
+                ]
+            }
+

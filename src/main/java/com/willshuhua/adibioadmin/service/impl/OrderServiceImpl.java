@@ -16,6 +16,7 @@ import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,16 +63,19 @@ public class OrderServiceImpl implements OrderService{
     public List<Object> selectLatestCashbackInfo(int limit) {
         List<Object> cashList = new ArrayList<>();
         List<Share> shareList = orderDao.selectLatestShares(limit);
-        List<List<OrderCashback>> listOrderCashbackList = new ArrayList<>();
         for (Share share : shareList){
             Map<String, Object> shareMap = new HashMap<>();
             List<OrderCashback> orderCashbacks = orderDao.selectOrderCashback(share.getOrder_id());
-            listOrderCashbackList.add(orderCashbacks);
+            BigDecimal whole = new BigDecimal(0);
+            for (OrderCashback orderCashback : orderCashbacks){
+                whole = whole.add(orderCashback.getCashback());
+            }
             Customer customer = customerDao.selectCustomer(share.getFrom_id());
             customer.setOpenid(null);
             shareMap.put("share", share);
-            shareMap.put("cashbacks", listOrderCashbackList);
+            shareMap.put("cashbacks", orderCashbacks);
             shareMap.put("customer", customer);
+            shareMap.put("whole_cashback", whole);
             cashList.add(shareMap);
         }
         return cashList;
@@ -81,16 +85,19 @@ public class OrderServiceImpl implements OrderService{
     public List<Object> selectPartCashbackInfo(int limit, long start_row) {
         List<Object> cashList = new ArrayList<>();
         List<Share> shareList = orderDao.selectPartShares(limit, start_row);
-        List<List<OrderCashback>> listOrderCashbackList = new ArrayList<>();
         for (Share share : shareList){
             Map<String, Object> shareMap = new HashMap<>();
             List<OrderCashback> orderCashbacks = orderDao.selectOrderCashback(share.getOrder_id());
-            listOrderCashbackList.add(orderCashbacks);
+            BigDecimal whole = new BigDecimal(0);
+            for (OrderCashback orderCashback : orderCashbacks){
+                whole = whole.add(orderCashback.getCashback());
+            }
             Customer customer = customerDao.selectCustomer(share.getFrom_id());
             customer.setOpenid(null);
             shareMap.put("share", share);
-            shareMap.put("cashbacks", listOrderCashbackList);
+            shareMap.put("cashbacks", orderCashbacks);
             shareMap.put("customer", customer);
+            shareMap.put("whole_cashback", whole);
             cashList.add(shareMap);
         }
         return cashList;

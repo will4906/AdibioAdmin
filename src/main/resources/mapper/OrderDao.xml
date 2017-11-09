@@ -108,7 +108,7 @@
     </select>
 
     <select id="selectOrderCashback" resultType="OrderCashback">
-        SELECT order_items.order_id, order_items.quantity, products.product_name, products.unit_price, pd.discount, pd.cashback
+        SELECT order_items.order_id, order_infos.order_infoid, products.product_name, products.unit_price, pd.discount, pd.cashback
         FROM
             order_items, order_infos, products, product_discounts AS pd
         WHERE

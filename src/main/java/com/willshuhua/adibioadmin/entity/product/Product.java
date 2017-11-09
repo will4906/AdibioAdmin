@@ -1,4 +1,4 @@
-package com.willshuhua.adibioadmin.entity.share;
+package com.willshuhua.adibioadmin.entity.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,11 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderCashback {
+public class Product {
 
-    private String order_id;
-    private String order_infoid;
+    private String product_id;
+    private String product_groupid;
     private String product_name;
     private BigDecimal unit_price;
-    private BigDecimal discount;
-    private BigDecimal cashback;
+    private String description;
 }

@@ -19,4 +19,18 @@
     <delete id="deleteProductGroup">
         DELETE FROM product_groups WHERE product_groupid = #{product_groupid}
     </delete>
+
+    <select id="selectAGroupProducts" resultType="Product">
+        SELECT product_id, product_groupid, product_name, unit_price, description
+        FROM
+            products
+        WHERE
+            products.product_groupid = #{product_groupid}
+    </select>
+
+    <update id="updateProduct">
+        UPDATE products SET product_name = #{product_name}, unit_price = #{unit_price}, description = #{description}
+        FROM
+        product_id = #{product_id}
+    </update>
 </mapper>

@@ -2,17 +2,18 @@ package com.willshuhua.adibioadmin.web;
 
 import com.willshuhua.adibioadmin.dto.common.Result;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class LoginController {
 
     private Logger logger = Logger.getLogger(LoginController.class);
 
     @RequestMapping(value = "/successlogin", method = RequestMethod.GET)
-    @ResponseBody
-    public Object successLogin(){
-        return new Result(Result.OK, "Login Successfully!");
+    public ModelAndView successLogin(){
+        return new ModelAndView("redirect:http://shop.adibio.cn/manager/#/board");
     }
 
     @RequestMapping(value = "/failurelogin", method = RequestMethod.GET)
