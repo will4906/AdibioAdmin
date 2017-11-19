@@ -56,4 +56,9 @@ public class AnalysisServiceImpl implements AnalysisService{
     public void updateAnalysis(Analysis analysis) {
         analysisDao.updateAnalysis(analysis);
     }
+
+    @Override
+    public void deleteAnalysis(String analysisId) {
+        analysisDao.deleteAnalysis(analysisId);
+    }
 }

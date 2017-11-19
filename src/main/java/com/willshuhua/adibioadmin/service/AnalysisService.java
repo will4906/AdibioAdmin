@@ -11,4 +11,6 @@ public interface AnalysisService {
     Map<String, Object> getAnalysisInfo(String orderInfoid);
 
     void updateAnalysis(Analysis analysis);
+
+    void deleteAnalysis(String analysisId);
 }

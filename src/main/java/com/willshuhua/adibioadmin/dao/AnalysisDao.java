@@ -12,4 +12,6 @@ public interface AnalysisDao {
     Analysis selectAnalysis(@Param("order_infoid")String orderInfoid);
 
     void updateAnalysis(Analysis analysis);
+
+    void deleteAnalysis(@Param("analysis_id")String analysisId);
 }

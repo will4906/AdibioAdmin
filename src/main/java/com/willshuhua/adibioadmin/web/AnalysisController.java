@@ -50,4 +50,10 @@ public class AnalysisController {
         analysisService.updateAnalysis(analysis);
         return new Result(Result.OK);
     }
+
+    @RequestMapping(value = "/delete_analysis", method = RequestMethod.POST)
+    public Object deleteAnalysis(@RequestParam("analysis_id")String analysisId){
+        analysisService.deleteAnalysis(analysisId);
+        return new Result();
+    }
 }

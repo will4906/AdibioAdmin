@@ -11,7 +11,7 @@ The analysis api of adibioshop.
 * 创建完成后获取相应的检测信息 [/analysis_info]
 * 然后可以修改检测信息 [/update_analysis]，特别注意检测信息的修改只能修改部分数值，用户信息暂时不允许修改
 * 当然，也会配套删除检测信息 [/delete_analysis]
-* 当整套检测完成之后，我们需要通知用户检测结果，此时这份检测数据将会被保存 [/notify_analysis]
+* 当整套检测完成之后，我们需要通知用户检测结果，此时这份检测数据将会被保存 [/notify_analysis]，特别注意此资源将由微信客户端后台做管理，请将url做相应修改。
 
 # 创建检测表单 [/create_analysis]
 
@@ -97,6 +97,28 @@ The analysis api of adibioshop.
                 result: '',
                 collection_date: '',
                 analysis_date: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm:
+            }
+
+# 删除检测表单 [/delete_analysis]
+
+## POST
+
++ Request (application/json)
+
+    + Body
+
+            {
+                analysis_id: '',
             }
 
 + Response 200 (application/json)
