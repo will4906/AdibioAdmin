@@ -32,11 +32,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        super.configure(http);
 //        此处千万不要调用父类配置，否则会导致下面的antMatchers的各种操作无效
         http
-                .authorizeRequests().antMatchers("/resource/**", "/test").permitAll()
+                .authorizeRequests().antMatchers("/resource/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
-                .formLogin().defaultSuccessUrl("/successlogin").failureForwardUrl("/failurelogin").loginProcessingUrl("/dologin").permitAll()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/successlogin").failureForwardUrl("/failurelogin").loginProcessingUrl("/dologin").permitAll()
                 .and()
                 .logout().logoutUrl("/dologout").logoutSuccessUrl("/successlogout").permitAll();
     }

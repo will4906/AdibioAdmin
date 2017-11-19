@@ -69,15 +69,15 @@ public class OrderController {
         return new Result(Result.OK, orderService.selectOrderIdByOrderInfoid(infoId));
     }
 
-    @RequestMapping(value = "/latest_need_cashback", method = RequestMethod.GET)
-    public Object latestNeedCashback(@RequestParam("limit") String limit){
-        List<Object> cashList = orderService.selectLatestCashbackInfo(Integer.valueOf(limit));
+    @RequestMapping(value = "/latest_cashback", method = RequestMethod.GET)
+    public Object latestNeedCashback(@RequestParam("limit") String limit, @RequestParam("paid")String paid){
+        List<Object> cashList = orderService.selectLatestCashbackInfo(Integer.valueOf(limit), Boolean.valueOf(paid));
         return new Result(Result.OK, cashList);
     }
 
-    @RequestMapping(value = "/part_need_cashback", method = RequestMethod.GET)
-    public Object partNeedCashback(@RequestParam("limit") String limit, @RequestParam("start_row")String start_row){
-        List<Object> cashList = orderService.selectPartCashbackInfo(Integer.valueOf(limit), Long.valueOf(start_row));
+    @RequestMapping(value = "/part_cashback", method = RequestMethod.GET)
+    public Object partNeedCashback(@RequestParam("limit") String limit, @RequestParam("start_row")String start_row, @RequestParam("paid") String paid){
+        List<Object> cashList = orderService.selectPartCashbackInfo(Integer.valueOf(limit), Long.valueOf(start_row), Boolean.valueOf(paid));
         return new Result(Result.OK, cashList);
     }
 
@@ -86,4 +86,5 @@ public class OrderController {
         orderService.updateShareIsPaid(shareId, true);
         return new Result(Result.OK);
     }
+
 }

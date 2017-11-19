@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.PatientDao">
+
+    <select id="selectOrderPatientInfo" resultType="OrderPatientInfo">
+        SELECT order_patient_infoid, order_infoid, name, gender, age, country, province, city, district, address, phone, has_diabetic, is_pregnant, height, weight
+        FROM order_patient_infos
+        WHERE
+            order_infoid = #{order_infoid}
+    </select>
+
+</mapper>

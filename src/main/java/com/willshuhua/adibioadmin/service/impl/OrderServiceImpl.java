@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService{
         Order order = orderDao.selectOrder(orderId);
         CustomerWechat customerWechat = customerDao.selectCustomerWechat(order.getCustomer_id());
         List<OrderEvent> eventList = orderDao.selectOrderEvent(orderId);
-        List<OrderInfoProduct> infoList = orderDao.selectOrderInfo(orderId);
+        List<OrderInfoProduct> infoList = orderDao.selectOrderInfoProduct(orderId);
         Map<String, Object> orderDetail = new HashMap<>();
         orderDetail.put("order", order);
         orderDetail.put("wechat", customerWechat);
@@ -60,9 +60,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Object> selectLatestCashbackInfo(int limit) {
+    public List<Object> selectLatestCashbackInfo(int limit, boolean paid) {
         List<Object> cashList = new ArrayList<>();
-        List<Share> shareList = orderDao.selectLatestShares(limit);
+        List<Share> shareList = orderDao.selectLatestShares(limit, paid);
         for (Share share : shareList){
             Map<String, Object> shareMap = new HashMap<>();
             List<OrderCashback> orderCashbacks = orderDao.selectOrderCashback(share.getOrder_id());
@@ -82,9 +82,9 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Object> selectPartCashbackInfo(int limit, long start_row) {
+    public List<Object> selectPartCashbackInfo(int limit, long start_row, boolean paid) {
         List<Object> cashList = new ArrayList<>();
-        List<Share> shareList = orderDao.selectPartShares(limit, start_row);
+        List<Share> shareList = orderDao.selectPartShares(limit, start_row, paid);
         for (Share share : shareList){
             Map<String, Object> shareMap = new HashMap<>();
             List<OrderCashback> orderCashbacks = orderDao.selectOrderCashback(share.getOrder_id());

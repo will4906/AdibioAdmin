@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.AnalysisDao">
+
+    <insert id="insertAnalysis">
+        INSERT INTO analysis(analysis_id, order_infoid, result, collection_date, analysis_date)
+                VALUES (#{analysis_id}, #{order_infoid}, #{result}, #{collection_date}, #{analysis_date})
+    </insert>
+
+    <update id="updateAnalysis">
+        UPDATE analysis SET result = #{result}, collection_date = #{collection_date}, analysis_date = #{analysis_date}
+        WHERE analysis_id = #{analysis_id}
+    </update>
+
+    <select id="selectAnalysis" resultType="Analysis">
+        SELECT analysis_id, order_infoid, result, collection_date, analysis_date FROM analysis WHERE order_infoid = #{order_infoid}
+    </select>
+
+</mapper>

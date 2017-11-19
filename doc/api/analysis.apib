@@ -1,0 +1,110 @@
+FORMAT: 1A
+
+# Analysis Api
+
+The analysis api of adibioshop.
+
+简单讲述一下整个检测流程
+
+* 首先第一步我们需要判断检测信息存不存在 [/analysis_info]
+* 我们需要先创建检测表单 [/create_analysis]
+* 创建完成后获取相应的检测信息 [/analysis_info]
+* 然后可以修改检测信息 [/update_analysis]，特别注意检测信息的修改只能修改部分数值，用户信息暂时不允许修改
+* 当然，也会配套删除检测信息 [/delete_analysis]
+* 当整套检测完成之后，我们需要通知用户检测结果，此时这份检测数据将会被保存 [/notify_analysis]
+
+# 创建检测表单 [/create_analysis]
+
+## POST
+
++ Request (application/json)
+
+    + Body
+
+            {
+                order_infoid: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm:
+            }
+
+# 获取检测信息 [/analysis_info]
+
+### GET
+
++ Request (application/json)
+
+    + Body
+            {
+                order_infoid: ""
+            }
+
++ Response (application/json)
+
+    + Body
+            {
+                {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                        patient_info: {
+                            order_infoid: "3796664676224",
+                            order_patient_infoid: "4141e7e3-4778-96cc-9ff710906727",
+                            name: "李四",
+                            gender: "M",
+                            age: 20,
+                            country: "CHINA",
+                            province: "广东省",
+                            city: "深圳市",
+                            district: "南山区",
+                            address: "深圳大学",
+                            phone: "123455667",
+                            has_diabetic: 0,
+                            is_pregnant: 0,
+                            height: 0,
+                            weight: 0
+                        },
+                        analysis: {
+                            analysis_id: "4066d5bf-421d-a379-dd0c6d423503",
+                            order_infoid: "379666676224",
+                            result: null,
+                            collection_date: null,
+                            analysis_date: null
+                        },
+                        product_name: "肾病早期筛查"
+                    }
+                }
+            }
+
+# 更新检测表单 [/update_analysis]
+
+## POST
+
++ Request (application/json)
+
+    + Body
+
+            {
+                analysis_id: '',
+                order_infoid: '',
+                result: '',
+                collection_date: '',
+                analysis_date: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm:
+            }

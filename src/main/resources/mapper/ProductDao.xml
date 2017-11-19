@@ -30,7 +30,11 @@
 
     <update id="updateProduct">
         UPDATE products SET product_name = #{product_name}, unit_price = #{unit_price}, description = #{description}
-        FROM
+        WHERE
         product_id = #{product_id}
     </update>
+
+    <select id="selectProduct" resultType="Product">
+        SELECT product_id, product_groupid, product_name, unit_price, description FROM products WHERE product_id = #{product_id}
+    </select>
 </mapper>

@@ -11,6 +11,10 @@ public class LoginController {
 
     private Logger logger = Logger.getLogger(LoginController.class);
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView loginPage(){
+        return new ModelAndView("/login");
+    }
     @RequestMapping(value = "/successlogin", method = RequestMethod.GET)
     public ModelAndView successLogin(){
         return new ModelAndView("redirect:http://shop.adibio.cn/manager/#/board");

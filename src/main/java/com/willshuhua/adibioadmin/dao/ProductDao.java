@@ -21,4 +21,6 @@ public interface ProductDao {
     List<Product> selectAGroupProducts(@Param("product_groupid") String productGroupId);
 
     void updateProduct(Product product);
+
+    Product selectProduct(@Param("product_id")String productId);
 }

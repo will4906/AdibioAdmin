@@ -16,3 +16,17 @@ CREATE TABLE managers(
   CONSTRAINT managers_managerid_unique UNIQUE (manager_id),
   CONSTRAINT managers_username_unique UNIQUE (username)
 );
+
+-- 描述用户检测结果的表格
+DROP TABLE IF EXISTS analysis CASCADE ;
+CREATE TABLE analysis (
+  row_id SERIAL,
+  analysis_id VARCHAR(255) NOT NULL ,
+  order_infoid VARCHAR(255) NOT NULL ,
+  result VARCHAR(255) ,
+  collection_date TIMESTAMP,
+  analysis_date TIMESTAMP,
+  CONSTRAINT analysis_rowid PRIMARY KEY (row_id),
+  CONSTRAINT analysis_analysis_id UNIQUE (analysis_id),
+  CONSTRAINT analysis_order_infoid UNIQUE (order_infoid)
+);

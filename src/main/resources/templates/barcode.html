@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <title>打印条码</title>
+</head>
+<body align="center">
+<style>
+    p{
+        margin: 0;
+        font-size: 12px;
+    }
+</style>
+<section data-th-each="info: ${infos}">
+    <p><span th:text="${info.name}"></span>&nbsp;<span th:text="${info.phone}"></span></p>
+    <canvas th:id="${info.order_infoid}"></canvas>
+    <p><span th:text="${info.order_infoid}"></span></p>
+    <p><span th:text="${info.product_name}"></span></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</section>
+<script th:src="@{/resource/jquery/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/resource/jsbarcode/JsBarcode.all.min.js}"></script>
+<script th:inline="javascript">
+    var infoarray = /*[[${infos}]]*/;
+    for (var i = 0; i < infoarray.length; i ++){
+        var canid = '#' + infoarray[i].order_infoid.toString();
+        $(canid).JsBarcode(infoarray[i].order_infoid, {
+            margin: 0,
+            displayValue: false,
+            width: 1.2,
+            height: 40
+        });
+    }
+</script>
+</body>
+</html>

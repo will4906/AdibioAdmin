@@ -48,7 +48,7 @@
         SELECT order_eventid, order_id, event_time, event_title, event_executor FROM order_events WHERE order_id = #{order_id}
     </select>
 
-    <select id="selectOrderInfo" resultType="OrderInfoProduct">
+    <select id="selectOrderInfoProduct" resultType="OrderInfoProduct">
         SELECT
             ot.order_id, ot.order_itemid,
             oi.order_infoid, oi.product_id,
@@ -84,6 +84,8 @@
         orders.order_id = shares.order_id
         AND
         orders.status LIKE 'PAID'
+        AND
+        shares.is_paid = #{paid}
         ORDER BY
             shares.row_id
         DESC
@@ -101,6 +103,8 @@
         orders.status LIKE 'PAID'
         AND
         shares.row_id <![CDATA[ < ]]> #{start_row}
+        AND
+        shares.is_paid = #{paid}
         ORDER BY
         shares.row_id
         DESC
@@ -108,7 +112,7 @@
     </select>
 
     <select id="selectOrderCashback" resultType="OrderCashback">
-        SELECT order_items.order_id, order_items.quantity, products.product_name, products.unit_price, pd.discount, pd.cashback
+        SELECT order_items.order_id, order_infos.order_infoid, products.product_name, products.unit_price, pd.discount, pd.cashback
         FROM
             order_items, order_infos, products, product_discounts AS pd
         WHERE
@@ -126,4 +130,8 @@
     <update id="updateShareIsPaid">
         UPDATE shares SET is_paid = #{is_paid} WHERE share_id = #{share_id}
     </update>
+
+    <select id="selectOrderInfo" resultType="OrderInfo">
+        SELECT order_itemid, order_infoid, product_id, patient_infoid FROM order_infos WHERE order_infoid = #{order_infoid}
+    </select>
 </mapper>

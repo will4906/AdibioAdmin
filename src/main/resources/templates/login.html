@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <link rel="stylesheet" data-th-href="@{/resource/bootstrap/css/bootstrap-material-design.min.css}">
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+        }
+        .center{
+            position: relative; /*脱离文档流*/
+            top: 50%; /*偏移*/
+        }
+        .login-box{
+            margin: 7% auto;
+        }
+    </style>
+</head>
+<body style="height: 100%;">
+<div class="container-fluid">
+    <!--<div class="row"></div>-->
+    <div class="row center login-box">
+        <div class="col align-self-start"></div>
+        <div class="col align-self-center">
+            <div class="card" style="width: 100%;">
+                <div align="center"><img th:src="@{/resource/images/logo.png}"></div>
+                <hr>
+                <form th:action="@{/dologin}" method="post">
+                    <div class="form-group">
+                        <label for="username_input">用户名：</label>
+                        <input type="text" class="form-control" id="username_input" aria-describedby="emailHelp" placeholder="输入用户名" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password_input">密码：</label>
+                        <input type="password" class="form-control" id="password_input" placeholder="密码" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+        </div>
+        <div class="col align-self-end"></div>
+    </div>
+
+</div>
+
+<script th:src="@{/resource/jquery/js/jquery-slim.min.js}"></script>
+<script th:src="@{/resource/bootstrap/js/popper.min.js}"></script>
+<script th:src="@{/resource/bootstrap/js/bootstrap-material-design.js}"></script>
+</body>
+</html>

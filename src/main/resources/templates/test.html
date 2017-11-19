@@ -7,12 +7,25 @@
 <body>
 <button type="button" id="login">登录</button>
 <button type="button" id="func">处理</button>
-<button type="button" id="logout">登出</button>
+<button type="button" id="logout">登出</button><br>
+<button type="button" id="createanalysis">创建检测表单</button>
 <section id="data">
 
 </section>
 <script th:src="@{/resource/jquery/js/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript">
+    $("#createanalysis").click(function (bu) {
+        $.ajax({
+            url: '/admin/create_analysis',
+            type: 'POST',
+            data: {
+                'order_infoid': '379666450794676224'
+            },
+            success: function (resp) {
+                $('#data').html(resp);
+            }
+        })
+    });
     function requuestLogin() {
         $.ajax({
             url: '/dologin',
