@@ -35,4 +35,8 @@ public interface OrderDao {
 
     OrderInfo selectOrderInfo(@Param("order_infoid")String orderInfoid);
 
+    void insertOrderEvent(OrderEvent orderEvent);
+
+    void updateOrderStatus(@Param("orderId") String orderId, @Param("status") String status);
+
 }

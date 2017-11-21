@@ -1,11 +1,9 @@
 package com.willshuhua.adibioadmin.web;
 
+import com.willshuhua.adibioadmin.define.OrderStatus;
 import com.willshuhua.adibioadmin.dto.common.Result;
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
-import com.willshuhua.adibioadmin.entity.order.Expressage;
-import com.willshuhua.adibioadmin.entity.order.Order;
-import com.willshuhua.adibioadmin.entity.order.OrderInfo;
-import com.willshuhua.adibioadmin.entity.order.OrderPatientInfo;
+import com.willshuhua.adibioadmin.entity.order.*;
 import com.willshuhua.adibioadmin.service.ExpressageService;
 import com.willshuhua.adibioadmin.service.OrderService;
 import com.willshuhua.adibioadmin.service.PatientService;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -102,8 +101,17 @@ public class OrderController {
         }
         Expressage oldExpressage = expressageService.selectExpressage(expressage.getExpressage_id());
         if (oldExpressage == null){
+            Map<String, String> orderIdMap = orderService.selectOrderIdByOrderInfoid(expressage.getOrder_infoid());
             expressage.setExpressage_id(UUID.randomUUID().toString());
             expressageService.insertExpressage(expressage);
+
+            OrderEvent orderEvent = new OrderEvent();
+            orderEvent.setOrder_eventid(UUID.randomUUID().toString());
+            orderEvent.setEvent_title(OrderStatus.DELIVERED);
+            orderEvent.setEvent_time(new Date());
+            orderEvent.setOrder_id(orderIdMap.get("order_id"));
+            orderEvent.setEvent_executor("admin");
+            orderService.changeOrderStatus(orderEvent);
         }else{
             expressageService.updateExpressage(expressage);
         }

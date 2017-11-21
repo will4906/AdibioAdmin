@@ -15,6 +15,7 @@ import com.willshuhua.adibioadmin.service.OrderService;
 import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -112,4 +113,11 @@ public class OrderServiceImpl implements OrderService{
     public OrderInfo selectOrderInfo(String orderInfoId) {
         return orderDao.selectOrderInfo(orderInfoId);
     }
+
+    @Override
+    public void changeOrderStatus(OrderEvent orderEvent) {
+        orderDao.insertOrderEvent(orderEvent);
+        orderDao.updateOrderStatus(orderEvent.getOrder_id(), orderEvent.getEvent_title());
+    }
+
 }

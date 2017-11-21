@@ -3,6 +3,7 @@ package com.willshuhua.adibioadmin.service;
 import com.willshuhua.adibioadmin.dao.OrderDao;
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
 import com.willshuhua.adibioadmin.entity.order.Order;
+import com.willshuhua.adibioadmin.entity.order.OrderEvent;
 import com.willshuhua.adibioadmin.entity.order.OrderInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,4 +29,6 @@ public interface OrderService {
     void updateShareIsPaid(String shareId, boolean isPaid);
 
     OrderInfo selectOrderInfo(String orderInfoId);
+
+    void changeOrderStatus(OrderEvent orderEvent);
 }

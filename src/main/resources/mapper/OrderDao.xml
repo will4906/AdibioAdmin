@@ -135,7 +135,12 @@
         SELECT order_itemid, order_infoid, product_id, patient_infoid FROM order_infos WHERE order_infoid = #{order_infoid}
     </select>
 
-    <select id="updateOrderPatientInfo">
-        UPDATE order_patient_infos SET
-    </select>
+    <insert id="insertOrderEvent">
+        INSERT INTO order_events(order_eventid, order_id, event_time, event_title, event_executor, description)
+        VALUES (#{order_eventid}, #{order_id}, #{event_time}, #{event_title}, #{event_executor}, #{description})
+    </insert>
+
+    <update id="updateOrderStatus" >
+        UPDATE orders SET status = #{status} WHERE order_id = #{orderId}
+    </update>
 </mapper>
