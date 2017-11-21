@@ -9,11 +9,47 @@
 <button type="button" id="func">处理</button>
 <button type="button" id="logout">登出</button><br>
 <button type="button" id="createanalysis">创建检测表单</button>
+<form method="post" th:action="@{/update_analysis}" id="sub_form">
+    <!--
+    analysis_id: '',
+                order_infoid: '',
+                result: '',
+                collection_date: '',
+                analysis_date: ''
+    -->
+    <input type="text" name="analysis_id" value="4066d5bf-01b5-421d-a379-dd0c6d423503">
+    <input type="text" name="order_infoid" value="379666450794676224">
+    <input type="text" name="result">
+    <input type="date" name="collection_date">
+    <input type="date" name="analysis_date">
+</form>
+<button type="button" id="sub">提交表单</button>
 <section id="data">
 
 </section>
 <script th:src="@{/resource/jquery/js/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript">
+    $('#sub').click(function (bu) {
+        $.ajax({
+            url: '/update_analysis',
+            type: 'post',
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify({
+                'analysis_id': '4066d5bf-01b5-421d-a379-dd0c6d423503',
+                'order_infoid': '379666450794676224',
+                'result': '正常',
+                'collection_date': '2017-11-09',
+                'analysis_date': '2017-11-21'
+            }),
+            success: function (resp){
+                console.log(resp);
+            },
+            error: function(resp){
+                console.log(resp);
+            }
+        });
+    });
     $("#createanalysis").click(function (bu) {
         $.ajax({
             url: '/admin/create_analysis',

@@ -2,24 +2,27 @@ package com.willshuhua.adibioadmin.web;
 
 import com.willshuhua.adibioadmin.dto.common.Result;
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
+import com.willshuhua.adibioadmin.entity.order.Expressage;
 import com.willshuhua.adibioadmin.entity.order.Order;
+import com.willshuhua.adibioadmin.entity.order.OrderInfo;
+import com.willshuhua.adibioadmin.service.ExpressageService;
 import com.willshuhua.adibioadmin.service.OrderService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class OrderController {
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    ExpressageService expressageService;
 
     private Logger logger = Logger.getLogger(OrderController.class);
 
@@ -87,4 +90,29 @@ public class OrderController {
         return new Result(Result.OK);
     }
 
+    @RequestMapping(value = "/update_expressage", method = RequestMethod.POST)
+    public Object updateExpressage(@RequestBody Expressage expressage){
+        OrderInfo orderInfo = orderService.selectOrderInfo(expressage.getOrder_infoid());
+        if (orderInfo == null){
+            return new Result(Result.ERR, "Can't the order info!");
+        }
+        Expressage oldExpressage = expressageService.selectExpressage(expressage.getExpressage_id());
+        if (oldExpressage == null){
+            expressage.setExpressage_id(UUID.randomUUID().toString());
+            expressageService.insertExpressage(expressage);
+        }else{
+            expressageService.updateExpressage(expressage);
+        }
+        return new Result();
+    }
+
+    @RequestMapping(value = "/expressage_info", method = RequestMethod.GET)
+    public Object expressageInfo(@RequestParam("order_infoid")String orderInfoId){
+        OrderInfo orderInfo = orderService.selectOrderInfo(orderInfoId);
+        if (orderInfo == null){
+            return new Result(Result.ERR, "Can't the order info!");
+        }
+        Expressage expressage = expressageService.selectExpressageByOrderInfoid(orderInfoId);
+        return new Result(Result.OK, expressage);
+    }
 }

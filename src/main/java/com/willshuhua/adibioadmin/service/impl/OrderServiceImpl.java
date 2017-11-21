@@ -107,4 +107,9 @@ public class OrderServiceImpl implements OrderService{
     public void updateShareIsPaid(String shareId, boolean isPaid) {
         orderDao.updateShareIsPaid(shareId, isPaid);
     }
+
+    @Override
+    public OrderInfo selectOrderInfo(String orderInfoId) {
+        return orderDao.selectOrderInfo(orderInfoId);
+    }
 }

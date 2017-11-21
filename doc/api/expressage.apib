@@ -1,0 +1,54 @@
+FORMAT: 1A
+
+# Expressage Api
+
+The Expressage api of adibioshop.
+
+# 查询货运信息 [/expressage_info]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            order_infoid
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                    expressage_id: '',
+                    order_infoid: '',
+                    company: '',
+                    expressage_number: ''
+                }
+            }
+
+# 更新货运信息 [/update_expressage]
+注意此处，创建和更新都用的是这个api
+## GET
+
++ Request (text/html)
+
+    + Body
+
+            {
+                order_infoid: '',
+                company: '',
+                expressage_number: ''       # 快递单号
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm:
+            }

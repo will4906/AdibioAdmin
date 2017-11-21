@@ -30,3 +30,16 @@ CREATE TABLE analysis (
   CONSTRAINT analysis_analysis_id UNIQUE (analysis_id),
   CONSTRAINT analysis_order_infoid UNIQUE (order_infoid)
 );
+
+-- 描述快递信息的表格
+DROP TABLE IF EXISTS expressages CASCADE ;
+CREATE TABLE expressages (
+  row_id SERIAL,
+  expressage_id VARCHAR(255) NOT NULL ,
+  order_infoid VARCHAR(255) NOT NULL ,
+  company VARCHAR(255) NOT NULL ,
+  expressage_number VARCHAR(255) NOT NULL ,
+  CONSTRAINT expressages_rowid PRIMARY KEY (row_id),
+  CONSTRAINT expressages_expressage_id UNIQUE (expressage_id),
+  CONSTRAINT expressages_order_infoid UNIQUE (order_infoid)
+);

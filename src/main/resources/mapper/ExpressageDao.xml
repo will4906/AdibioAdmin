@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.willshuhua.adibioadmin.dao.ExpressageDao">
+
+    <select id="selectExpressage" resultType="Expressage">
+        SELECT expressage_id, order_infoid, company, expressage_number
+        FROM
+            expressages
+        WHERE
+            expressage_id = #{expressage_id}
+    </select>
+
+    <select id="selectExpressageByOrderInfoid" resultType="Expressage">
+        SELECT expressage_id, order_infoid, company, expressage_number
+        FROM
+            expressages
+        WHERE
+            order_infoid = #{order_infoid}
+    </select>
+
+    <select id="insertExpressage">
+        INSERT INTO expressages(expressage_id, order_infoid, company, expressage_number)
+        VALUES (#{expressage_id}, #{order_infoid}, #{company}, #{expressage_number})
+    </select>
+
+    <update id="updateExpressage">
+        UPDATE expressages SET company = #{company}, expressage_number = #{expressage_number} WHERE order_infoid = #{order_infoid}
+    </update>
+</mapper>

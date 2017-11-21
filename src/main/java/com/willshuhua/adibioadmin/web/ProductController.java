@@ -49,6 +49,7 @@ public class ProductController {
 
     @RequestMapping(value = "/update_product",method = RequestMethod.POST)
     public Object updateProduct(@ModelAttribute("product")Product product){
+        productService.updateProduct(product);
         return new Result();
     }
 }

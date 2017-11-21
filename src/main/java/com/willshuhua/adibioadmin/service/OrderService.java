@@ -27,4 +27,5 @@ public interface OrderService {
 
     void updateShareIsPaid(String shareId, boolean isPaid);
 
+    OrderInfo selectOrderInfo(String orderInfoId);
 }
