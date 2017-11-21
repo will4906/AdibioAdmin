@@ -5,8 +5,10 @@ import com.willshuhua.adibioadmin.dto.order.OrderQuery;
 import com.willshuhua.adibioadmin.entity.order.Expressage;
 import com.willshuhua.adibioadmin.entity.order.Order;
 import com.willshuhua.adibioadmin.entity.order.OrderInfo;
+import com.willshuhua.adibioadmin.entity.order.OrderPatientInfo;
 import com.willshuhua.adibioadmin.service.ExpressageService;
 import com.willshuhua.adibioadmin.service.OrderService;
+import com.willshuhua.adibioadmin.service.PatientService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,8 @@ public class OrderController {
     OrderService orderService;
     @Autowired
     ExpressageService expressageService;
+    @Autowired
+    PatientService patientService;
 
     private Logger logger = Logger.getLogger(OrderController.class);
 
@@ -114,5 +118,15 @@ public class OrderController {
         }
         Expressage expressage = expressageService.selectExpressageByOrderInfoid(orderInfoId);
         return new Result(Result.OK, expressage);
+    }
+
+    @RequestMapping(value = "/update_order_patient", method = RequestMethod.POST)
+    public Object updateOrderPatient(@RequestBody OrderPatientInfo orderPatientInfo){
+        OrderPatientInfo orderPatientInfo1 = patientService.selectOrderPatientInfoByOrderPatientInfoId(orderPatientInfo.getOrder_patient_infoid());
+        if (orderPatientInfo1 == null){
+            return new Result(Result.ERR, "Can't find the order patient info!");
+        }
+        patientService.updateOrderPatientInfo(orderPatientInfo);
+        return new Result(Result.OK, orderPatientInfo);
     }
 }

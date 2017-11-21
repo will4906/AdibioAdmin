@@ -1,10 +1,7 @@
 package com.willshuhua.adibioadmin.dao;
 
 import com.willshuhua.adibioadmin.dto.order.OrderQuery;
-import com.willshuhua.adibioadmin.entity.order.Order;
-import com.willshuhua.adibioadmin.entity.order.OrderEvent;
-import com.willshuhua.adibioadmin.entity.order.OrderInfo;
-import com.willshuhua.adibioadmin.entity.order.OrderInfoProduct;
+import com.willshuhua.adibioadmin.entity.order.*;
 import com.willshuhua.adibioadmin.entity.share.OrderCashback;
 import com.willshuhua.adibioadmin.entity.share.Share;
 import org.apache.ibatis.annotations.Param;
@@ -37,4 +34,5 @@ public interface OrderDao {
     void updateShareIsPaid(@Param("share_id") String shareId, @Param("is_paid") boolean isPaid);
 
     OrderInfo selectOrderInfo(@Param("order_infoid")String orderInfoid);
+
 }

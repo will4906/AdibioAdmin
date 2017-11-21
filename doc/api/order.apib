@@ -396,4 +396,53 @@ The orders api of adibioshop.
                 parm: null
             }
 
+# 更新已形成订单的检测人信息 [/update_order_patient]
 
+## POST
+
++ Request (application/json)
+
+    + Body
+            {
+                order_infoid: '',           # 可以不要
+                order_patient_infoid: '',   # 必须
+                name: '',
+                gender: '',
+                age: '',
+                country: '',
+                province: '',
+                city: '',
+                district: '',
+                address: '',
+                phone: '',
+                has_diabetic: '',
+                is_pregnant = #{is_pregnant},
+                height: '',
+                weight: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: {
+                          order_infoid: '',
+                          order_patient_infoid: '',
+                          name: '',
+                          gender: '',
+                          age: '',
+                          country: '',
+                          province: '',
+                          city: '',
+                          district: '',
+                          address: '',
+                          phone: '',
+                          has_diabetic: '',
+                          is_pregnant = #{is_pregnant},
+                          height: '',
+                          weight: ''
+                      }
+            }

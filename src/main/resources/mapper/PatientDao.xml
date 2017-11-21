@@ -11,4 +11,30 @@
             order_infoid = #{order_infoid}
     </select>
 
+    <update id="updateOrderPatientInfo">
+        UPDATE order_patient_infos SET name = #{name},
+        gender = #{gender},
+        age = #{age},
+        country = #{country},
+        province = #{province},
+        city = #{city},
+        district = #{district},
+        address = #{address},
+        phone = #{phone},
+        has_diabetic = #{has_diabetic},
+        is_pregnant = #{is_pregnant},
+        height = #{height},
+        weight = #{weight}
+        WHERE
+        order_patient_infoid = #{order_patient_infoid}
+    </update>
+
+    <select id="selectOrderPatientInfoByOrderPatientInfoId" resultType="OrderPatientInfo">
+        SELECT
+            order_infoid, order_patient_infoid, name, gender, age, country, province, city, district, address, phone, has_diabetic, is_pregnant, height, weight
+        FROM
+            order_patient_infos
+        WHERE
+            order_patient_infoid = #{order_patient_infoid}
+    </select>
 </mapper>

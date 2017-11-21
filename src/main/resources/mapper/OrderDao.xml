@@ -134,4 +134,8 @@
     <select id="selectOrderInfo" resultType="OrderInfo">
         SELECT order_itemid, order_infoid, product_id, patient_infoid FROM order_infos WHERE order_infoid = #{order_infoid}
     </select>
+
+    <select id="updateOrderPatientInfo">
+        UPDATE order_patient_infos SET
+    </select>
 </mapper>
