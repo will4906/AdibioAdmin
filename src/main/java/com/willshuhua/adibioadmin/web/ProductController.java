@@ -2,6 +2,7 @@ package com.willshuhua.adibioadmin.web;
 
 import com.willshuhua.adibioadmin.dto.common.Result;
 import com.willshuhua.adibioadmin.entity.product.Product;
+import com.willshuhua.adibioadmin.entity.product.ProductDiscount;
 import com.willshuhua.adibioadmin.entity.product.ProductGroup;
 import com.willshuhua.adibioadmin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,23 @@ public class ProductController {
         return new Result(Result.OK, productList);
     }
 
+    @RequestMapping(value = "/product_discount_list", method = RequestMethod.GET)
+    public Object productDiscountList(@RequestParam("product_id")String productId){
+        return new Result(Result.OK, productService.selectAProductsProductDiscount(productId));
+    }
+
     @RequestMapping(value = "/update_product",method = RequestMethod.POST)
-    public Object updateProduct(@ModelAttribute("product")Product product){
+    public Object updateProduct(@RequestBody Product product){
+        if (productService.selectProduct(product.getProduct_id()) == null){
+            return new Result(Result.ERR, "Can't find the product");
+        }
         productService.updateProduct(product);
+        return new Result(Result.OK, product);
+    }
+
+    @RequestMapping(value = "/update_product_discount", method = RequestMethod.POST)
+    public Object updateProductDiscount(@RequestBody ProductDiscount productDiscount){
+        productService.updateProductDiscount(productDiscount);
         return new Result();
     }
 }

@@ -37,4 +37,10 @@
     <select id="selectProduct" resultType="Product">
         SELECT product_id, product_groupid, product_name, unit_price, description FROM products WHERE product_id = #{product_id}
     </select>
+
+    <update id="updateProductDiscount">
+        UPDATE product_discounts SET discount_type = #{discount_type}, discount = #{discount}, cashback = #{cashback}, description =  #{description}
+        WHERE
+            product_discount_id = #{product_discount_id}
+    </update>
 </mapper>

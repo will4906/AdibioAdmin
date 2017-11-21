@@ -2,6 +2,7 @@ package com.willshuhua.adibioadmin.service.impl;
 
 import com.willshuhua.adibioadmin.dao.ProductDao;
 import com.willshuhua.adibioadmin.entity.product.Product;
+import com.willshuhua.adibioadmin.entity.product.ProductDiscount;
 import com.willshuhua.adibioadmin.entity.product.ProductGroup;
 import com.willshuhua.adibioadmin.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,20 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void updateProduct(Product product) {
         productDao.updateProduct(product);
+    }
+
+    @Override
+    public Product selectProduct(String productId) {
+        return productDao.selectProduct(productId);
+    }
+
+    @Override
+    public List<ProductDiscount> selectAProductsProductDiscount(String productId) {
+        return productDao.selectAProductsProductDiscount(productId);
+    }
+
+    @Override
+    public void updateProductDiscount(ProductDiscount productDiscount) {
+        productDao.updateProductDiscount(productDiscount);
     }
 }

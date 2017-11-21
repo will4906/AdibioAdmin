@@ -163,3 +163,73 @@ The product api of adibioshop.
                 ]
             }
 
+# 查询一个产品下的所有优惠信息[/product_discount_list]
+
+## GET
+
++ Request (text/html)
+
+    + Body
+            product_id
++ Response 200 (application/json)
+
+    + Body
+            {
+                product_discount_id: ''
+                product_id: ''
+                discount_type: ''
+                discount: ''
+                cashback: ''
+                description: ''
+            }
+
+# 修改产品信息 [/update_product]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
+            {
+                product_id: '123445667'
+                name: 'hello',
+                description: ''
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: ""
+            }
+
+# 修改产品优惠信息 [/update_product_discount]
+
+## POST
+
++ Request (text/html)
+
+    + Body
+
+            {
+                product_discount_id: "",
+                product_id: "",
+                discount_type: "",
+                discount: "",
+                cashback: "",
+                description: "",
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                result: "ok",
+                errMsg: "",
+                parm: ""
+            }

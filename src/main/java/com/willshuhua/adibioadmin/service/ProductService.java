@@ -1,6 +1,7 @@
 package com.willshuhua.adibioadmin.service;
 
 import com.willshuhua.adibioadmin.entity.product.Product;
+import com.willshuhua.adibioadmin.entity.product.ProductDiscount;
 import com.willshuhua.adibioadmin.entity.product.ProductGroup;
 
 import java.util.List;
@@ -18,4 +19,10 @@ public interface ProductService {
     List<Product> selectAGroupProducts(String productGroupId);
 
     void updateProduct(Product product);
+
+    Product selectProduct(String productId);
+
+    List<ProductDiscount> selectAProductsProductDiscount(String productId);
+
+    void updateProductDiscount(ProductDiscount productDiscount);
 }

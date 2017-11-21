@@ -1,6 +1,7 @@
 package com.willshuhua.adibioadmin.dao;
 
 import com.willshuhua.adibioadmin.entity.product.Product;
+import com.willshuhua.adibioadmin.entity.product.ProductDiscount;
 import com.willshuhua.adibioadmin.entity.product.ProductGroup;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -23,4 +24,8 @@ public interface ProductDao {
     void updateProduct(Product product);
 
     Product selectProduct(@Param("product_id")String productId);
+
+    List<ProductDiscount> selectAProductsProductDiscount(@Param("product_id")String productId);
+
+    void updateProductDiscount(ProductDiscount productDiscount);
 }
