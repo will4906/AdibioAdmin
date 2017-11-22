@@ -35,4 +35,8 @@ public class ManagerService implements UserDetailsService {
     public Manager selectManagerByUsername(String username){
         return managerDao.selectManagerByUsername(username);
     }
+
+    public void updatePassword(Manager manager){
+        managerDao.updatePassword(manager);
+    }
 }

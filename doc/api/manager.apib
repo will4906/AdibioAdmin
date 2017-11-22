@@ -28,3 +28,44 @@ The manager api of adibioshop.
                     head_image: null
                 }
             }
+
+# 校验密码 [/check_password]
+
+## POST
+
++ Request
+
+    + Body
+            {
+                password: ''
+            }
+
++ Response
+
+    + Body
+            {
+                result: 'ok',
+                errMsg: '',
+                parm: 'true'/'false'
+            }
+
+# 更新密码 [/update_password]
+
+## POST
+
++ Request
+
+    + Body
+            {
+                old_password: '',
+                new_password: ''
+            }
+
++ Response
+
+    + Body
+            {
+                result: 'ok',   # ok更新成功，err更新失败，旧密码错误或者缓存时间过期
+                errMsg: '',
+                parm: ''
+            }

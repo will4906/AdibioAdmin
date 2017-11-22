@@ -10,4 +10,6 @@ import java.util.Map;
 public interface ManagerDao {
 
     Manager selectManagerByUsername(@Param("username")String username);
+
+    void updatePassword(Manager manager);
 }

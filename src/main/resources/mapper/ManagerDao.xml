@@ -24,4 +24,8 @@
         WHERE
             username = #{username}
     </select>
+
+    <update id="updatePassword">
+        UPDATE managers SET password = #{password} WHERE username = #{username}
+    </update>
 </mapper>
